@@ -95,3 +95,11 @@ ggplot(ssdata, aes(x=cluster,y=sse)) +
                 ylab("Within Cluster Sum of Squares") + xlab("Jumlah Cluster") +
                 geom_text(aes(label=format(round(sse, 2), nsmall = 2)),hjust=-0.2, vjust=-0.5) +
   scale_x_discrete(limits=c(1:jumlah_cluster_max))
+
+#Ganti Fokus pada Pelanggan
+#Lengkapi dengan dua vector bernama cluster dan Nama.Segmen 
+Segmen.Pelanggan <- data.frame(cluster = c(1,2,3,4,5),Nama.Segmen = c("Silver Youth Gals","Diamond Senior Member","Gold Young Professional","Diamond Professional","Silver Mid Professional"))
+
+#Menggabungkan seluruh aset ke dalam variable Identitas.Cluster
+Identitas.Cluster <- list(Profesi=Profesi, Jenis.Kelamin=Jenis.Kelamin, Tipe.Residen=Tipe.Residen, Segmentasi=segmentasi, Segmen.Pelanggan=Segmen.Pelanggan, field_yang_digunakan=field_yang_digunakan)
+saveRDS(Identitas.Cluster,"cluster.rds") #Simpan ke dalam file cluster.rds
