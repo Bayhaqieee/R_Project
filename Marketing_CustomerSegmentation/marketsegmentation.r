@@ -25,3 +25,37 @@ pelanggan
 Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
 Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
 Tipe.Residen <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+
+#Bagian K-Means (Membentuk Cluster)
+set.seed(1)
+#fungsi kmeans untuk membentuk 5 cluster dengan 25 skenario random dan simpan ke dalam variable segmentasi
+segmentasi <- kmeans(x=pelanggan[c("Umur","Profesi.1")], centers=5, nstart=25)
+#tampilkan hasil k-means
+segmentasi
+
+#Penggabungan hasil cluster
+
+segmentasi$cluster
+pelanggan$cluster <- segmentasi$cluster
+str(pelanggan)
+
+#Analisa hasil
+#Filter cluster ke-1
+which(pelanggan$cluster == 1)
+length(which(pelanggan$cluster == 1))
+
+#Analisa hasil
+#Melihat data cluster ke 3-5
+pelanggan[which(pelanggan$cluster == 3),] 
+pelanggan[which(pelanggan$cluster == 4),] 
+pelanggan[which(pelanggan$cluster == 5),]
+
+#Analisa hasil
+#Melihat cluster means dari objek
+segmentasi$centers
+
+#Membandingkan dengan 2 cluster kmeans, masing-masing 2 dan 5 (Membandingkan hasil cluster dengan 2 dan 5 cluster dari faktor Sum Squared Error (SSE))
+set.seed(1)
+kmeans(x=pelanggan[field_yang_digunakan], centers=2, nstart=25)
+set.seed(1)
+kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
