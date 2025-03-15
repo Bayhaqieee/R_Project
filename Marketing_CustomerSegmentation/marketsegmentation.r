@@ -76,3 +76,22 @@ kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
 segmentasi$withinss
 segmentasi$cluster
 segmentasi$tot.withinss
+
+#Bagian K-Means (Untuk Simulasi Jumlah Cluster dan SS yang Optimal (Elbow Method)) 
+set.seed(1)
+sse <- sapply(1:10,
+function(param_k){
+	kmeans(pelanggan[field_yang_digunakan],
+		   param_k, nstart=25)$tot.withinss
+}
+			 )
+sse
+
+# Visualisasi Elbow Method
+jumlah_cluster_max <- 10
+ssdata = data.frame(cluster=c(1:jumlah_cluster_max),sse)
+ggplot(ssdata, aes(x=cluster,y=sse)) +
+                geom_line(color="red") + geom_point() +
+                ylab("Within Cluster Sum of Squares") + xlab("Jumlah Cluster") +
+                geom_text(aes(label=format(round(sse, 2), nsmall = 2)),hjust=-0.2, vjust=-0.5) +
+  scale_x_discrete(limits=c(1:jumlah_cluster_max))
