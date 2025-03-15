@@ -59,3 +59,20 @@ set.seed(1)
 kmeans(x=pelanggan[field_yang_digunakan], centers=2, nstart=25)
 set.seed(1)
 kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
+
+# Komponen - Deskripsi - Contoh
+
+# cluster - Vector dari cluster untuk tiap titik data - [1] 2 1 5 5 4 1 2 5 3 3 5 5 2 2 1 3 3 2 3
+# centers - Merupakan informasi titik centroid dari tiap cluster, seperti pada bagian "Analisa Hasil Cluster Means" - Lihat contoh pada "Analisa Hasil Cluster Means"
+# totss - Total Sum of Squares (SS) untuk seluruh titik data - [1] 10990.97
+# withinss - Total Sum of Squares per cluster - [1] 316.73367  58.21123 174.85164 171.67372 108.49735
+# tot.withinss - Total penjumlahan dari tiap SS dari withinss - [1] 829.9676
+# betweenss - Perbedaan nilai antara totss dan tot.withinss - [1] 10161.01
+# size - Jumlah titik data pada tiap cluster - [1] 14  5 12  9 10
+# iter - Jumlah iterasi luar yang digunakan oleh kmeans - 2
+# ifault - Nilai integer yang menunjukkan indikator masalah pada algoritma - 0 (jika tidak ada masalah)
+
+#Analisa hasil
+segmentasi$withinss
+segmentasi$cluster
+segmentasi$tot.withinss
